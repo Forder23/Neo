@@ -28,6 +28,20 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     private Transform PlayerHealthBox;
     private NeoHealthSystemScript PlayerHealth;
+
+    [SerializeField]
+    private bool IsHurt;
+    private bool _IsHurtTemp;
+
+    [SerializeField]
+    private Vector3 PositionBeforeSpike;
+    public void SetHurt(bool Hurt)
+    {
+        _IsHurtTemp = Hurt;
+        IsHurt = _IsHurtTemp;
+    }
+
+    public bool GetHurt() { return IsHurt; }
     private void Start()
     {
         OnJumpPressed += MovementScript_OnJumpPressed;
@@ -93,6 +107,7 @@ public class MovementScript : MonoBehaviour
 
         PlayerAnimator.SetFloat("movementSpeed", MovementSpeed);
         PlayerAnimator.SetBool("IsJumping", IsJumping);
+        PlayerAnimator.SetBool("IsHurt", IsHurt);
     }
 
     private IEnumerator JumpCoolDown()
@@ -103,11 +118,24 @@ public class MovementScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Dinosaur_Enemy"))
+        if (collision.gameObject.CompareTag("Dinosaur_Enemy"))
         {
-            PlayerHealth.TakeLife(); //take one life
-            //animation for hurt player
+            PlayerHealth.TakeLife(); //take one life            
             //save position before hurt and start from that position or from the last checkpoint           
+        }
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            PlayerHealth.TakeLife();
+            IsHurt = true;//animation for hurt player           
+            RespawnPoint = new Vector3(Player.transform.position.x - 2f, Player.transform.position.y, Player.transform.position.z); ;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            StartCoroutine(CooldownForHurt());          
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -136,6 +164,12 @@ public class MovementScript : MonoBehaviour
                 //Debug.Log("You left the platform");
             }
         }
+    }
+
+    private IEnumerator CooldownForHurt()
+    {
+        yield return new WaitForSeconds(1.3f);
+        IsHurt = false;
     }
 }
 
