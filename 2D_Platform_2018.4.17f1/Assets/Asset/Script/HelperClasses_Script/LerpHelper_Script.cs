@@ -39,6 +39,7 @@ public class LerpHelper_Script : MonoBehaviour
             enemy.isTouched = false;
             moving = false;
             Neo.GetComponent<Renderer>().enabled = true;
+            Neo.GetComponent<MovementScript>().SetHurt(false);
         }
     }
 }

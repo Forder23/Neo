@@ -8,6 +8,7 @@ public class ThrowBoneScript : MonoBehaviour
     private const int _NUMBER_OF_BONES_IN_BUNCH = 6; 
 
     private static int NumberOfBones;
+
     public Transform FirePoint;
     public GameObject BonePrefab;
 
@@ -30,13 +31,18 @@ public class ThrowBoneScript : MonoBehaviour
 
     }
 
+    public void AddBones(int bones)
+    {
+        NumberOfBones += bones;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
         {
             if (collision.gameObject.CompareTag("Bunch_Bones"))
             {
-               NumberOfBones += _NUMBER_OF_BONES_IN_BUNCH;
+               AddBones(_NUMBER_OF_BONES_IN_BUNCH);
                Destroy(collision.gameObject);
             }
         }
