@@ -7,7 +7,7 @@ public class LerpHelper_Script : MonoBehaviour
 {
     public GameObject Neo;
     [SerializeField]
-    [Range(0,3)]
+    [Range(0, 3)]
     float lerpSpeed;
     public bool moving = false;
     EnemyTouchScript enemy;
@@ -19,26 +19,27 @@ public class LerpHelper_Script : MonoBehaviour
     }
 
     private void Update()
-    {        
-        if (enemy.isTouched==true)
+    {
+        if (enemy.isTouched == true)
         {
             moving = true;
-            Neo.GetComponent<Renderer>().enabled=false;
+            Neo.GetComponent<Renderer>().enabled = false;
         }
-    
-        if (moving==true)
+
+        if (moving == true)
         {
-           
-            Neo.transform.position = Vector3.Lerp(Neo.transform.position, Neo.GetComponent<MovementScript>().RespawnPoint, lerpSpeed *Time.deltaTime);           
+
+            Neo.transform.position = Vector3.Lerp(Neo.transform.position, Neo.GetComponent<MovementScript>().RespawnPoint, lerpSpeed * Time.deltaTime);
         }
 
         float distBetween = Vector3.Distance(Neo.transform.position, Neo.GetComponent<MovementScript>().RespawnPoint);
-        
+
         if (distBetween <= 0.3)
         {
             enemy.isTouched = false;
             moving = false;
             Neo.GetComponent<Renderer>().enabled = true;
+            Neo.GetComponent<MovementScript>().SetHurt(false);
         }
     }
 }

@@ -1,6 +1,6 @@
 Win
 PlayerPath?
-F:/TestBuild/2D_Platform_2018.4.17f1.exe
+C:/Users/admir/OneDrive/Desktop/2D_Platform_2018.4.17f1.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Scene1_Exploring.unity
@@ -20,7 +20,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.G
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
-c560e60cdb2d965998f5ca549a296f64 Assembly-CSharp.dll:.MovementScript
+44493cb24a309cf809b59e98e1b4f5b3 Assembly-CSharp.dll:.MovementScript
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 507174d46dacbc5fe45e28485db5dd1e UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -53,7 +53,10 @@ aa165095bcf0f4d99594ea33df01c81b UnityEngine.UI.dll:UnityEngine.UI.Slider
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+4eb9085cd5acd14cff368aea5eda9f96 Assembly-CSharp.dll:.MovingPlatformScript
 d3c76b14a25eebd3a3323dd43297919c Unity.TextMeshPro.dll:TMPro.TMP_InputField
+71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
+71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 bde244b2c62ae16675bd87322f58afaa Assembly-CSharp.dll:.EnemyTouchScript
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.CoinScript
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -122,6 +125,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MainMenuScript
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
+3940880819dc32b31ac9ebc2829de09f Assembly-CSharp.dll:.NeoHealthSystemScript
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
@@ -157,18 +161,19 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
-caffcd81736c8f3f3206bab2868dc499 Assembly-CSharp.dll:.BoneScript
+b1a87b47d2edd5b7458f796b71b45ba9 Assembly-CSharp.dll:.BoneScript
 3b760e6526e13f7504f59e210145899a Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.EasterEggs_Script
 507174d46dacbc5fe45e28485db5dd1e Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 85945ef260a154b452405cb4abd59e47 Assembly-CSharp.dll:.PatrollingScript
+1fda6477c54b383f02879a313d6f8609 Assembly-CSharp.dll:.ScoreScript
 df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
-0ad4c2d15bcc564119316ed1a902d6e5 Assembly-CSharp.dll:.CameraScript
+1d8e4c8bb34756463f8f9de41eeda953 Assembly-CSharp.dll:.CameraScript
 9074d6458cb992078235d8760b1bc722 Assembly-CSharp.dll:.HealthScript
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.BoosterScript
+a148f8546114a242dfeef870219105a7 Assembly-CSharp.dll:.BoosterScript
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.WaterScript
-a34d19ac6c60ccf47f34e04ba5f41903 Assembly-CSharp.dll:.ThrowBoneScript
+76b6b208ef24ee0db339bcd244e03a31 Assembly-CSharp.dll:.ThrowBoneScript

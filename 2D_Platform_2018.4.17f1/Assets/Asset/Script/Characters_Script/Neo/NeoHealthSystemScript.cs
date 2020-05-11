@@ -14,6 +14,15 @@ public class NeoHealthSystemScript : MonoBehaviour
     private Image[] HeartObject;
 
     int NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES-1;
+
+    private bool LostLife; //variable used for disappearing platform in second lvl
+    private void IsLost(bool Lost) { LostLife = Lost; }
+    public void SetIsLifeLost(bool _LostLife)
+    {
+        IsLost(_LostLife);
+    }
+    public bool GetIsLostLife() { return LostLife; }
+
     void Start()
     {
         ////for loop for instantiating all hearts
@@ -36,6 +45,7 @@ public class NeoHealthSystemScript : MonoBehaviour
         {
             HeartObject[NumberOfCurrentLife].enabled = false;
             NumberOfCurrentLife--;
+            SetIsLifeLost(true);
         }
         else
         {

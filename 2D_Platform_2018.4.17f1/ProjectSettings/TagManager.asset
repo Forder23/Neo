@@ -14,6 +14,11 @@ TagManager:
   - Platform
   - Spike
   - Bunch_Bones
+  - Next_Level
+  - Door_Trigger
+  - Pendulum
+  - Grass_ThinSprite
+  - Rock_Asset
   layers:
   - Default
   - TransparentFX
@@ -48,6 +53,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Forrest_Background_02
+    uniqueID: 415321703
+    locked: 0
+  - name: Forrest_Background
+    uniqueID: 1286859521
+    locked: 0
+  - name: Background_Ground
+    uniqueID: 3600789445
+    locked: 0
+  - name: Background_Sky
+    uniqueID: 1826039083
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

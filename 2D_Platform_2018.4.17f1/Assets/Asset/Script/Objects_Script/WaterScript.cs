@@ -9,7 +9,8 @@ public class WaterScript : MonoBehaviour
     SpriteRenderer waterSprite;
 
     GameObject Neo;
-    GameObject Water;
+    [SerializeField]
+    private GameObject Water;
     void Start()
     {
         playerInWater = false;
@@ -17,20 +18,21 @@ public class WaterScript : MonoBehaviour
         waterSprite = GetComponent<SpriteRenderer>();
 
         Neo = GameObject.FindGameObjectWithTag("Player");
-        Water = GameObject.FindGameObjectWithTag("WaterSprite");
+        //Water = GameObject.FindGameObjectWithTag("WaterSprite");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.tag == "Player")
         {
-            gameObject.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y-0.6f);
+            //gameObject.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y-0.6f);
             waterSprite.sprite.name = "water_sprite_small_4";
             playerInWater = true;
-            Destroy(gameObject,1.5f);
+            Destroy(Water,1.5f);
             //Neo.SetActive(false);
             //Neo.transform.position = Neo.GetComponent<MovementScript>().respawnPoint;
             //Neo.SetActive(true);
+            Instantiate(Water, transform.position, transform.rotation);
         }
         waterAnimator.SetBool("playerInWater", playerInWater);
         
