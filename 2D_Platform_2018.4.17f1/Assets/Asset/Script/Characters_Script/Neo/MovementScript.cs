@@ -109,12 +109,16 @@ public class MovementScript : MonoBehaviour
 
         PlayerAnimator.SetFloat("movementSpeed", MovementSpeed);
         PlayerAnimator.SetBool("IsJumping", IsJumping);
+<<<<<<< HEAD
         PlayerAnimator.SetBool("IsHurt", IsHurt); 
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
+=======
+        PlayerAnimator.SetBool("IsHurt", IsHurt);
+>>>>>>> ed38e47f762458a193068890edb3f3e5f7b93990
     }
 
     private IEnumerator JumpCoolDown()
@@ -136,17 +140,24 @@ public class MovementScript : MonoBehaviour
             IsHurt = true;//animation for hurt player           
             RespawnPoint = new Vector3(Player.transform.position.x - 2f, Player.transform.position.y, Player.transform.position.z); ;
         }
+<<<<<<< HEAD
         if (collision.gameObject.CompareTag("Next_Level"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+=======
+>>>>>>> ed38e47f762458a193068890edb3f3e5f7b93990
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Spike"))
         {
+<<<<<<< HEAD
             StartCoroutine(CooldownForHurt());
+=======
+            StartCoroutine(CooldownForHurt());          
+>>>>>>> ed38e47f762458a193068890edb3f3e5f7b93990
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -181,6 +192,16 @@ public class MovementScript : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+    private IEnumerator CooldownForHurt()
+    {
+        yield return new WaitForSeconds(1.3f);
+        IsHurt = false;
+    }
+}
+>>>>>>> ed38e47f762458a193068890edb3f3e5f7b93990
 
     private IEnumerator CooldownForHurt()
     {

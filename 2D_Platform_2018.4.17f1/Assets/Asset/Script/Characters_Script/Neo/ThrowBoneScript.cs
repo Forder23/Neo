@@ -42,8 +42,13 @@ public class ThrowBoneScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Bunch_Bones"))
             {
+<<<<<<< HEAD
                 AddBones(_NUMBER_OF_BONES_IN_BUNCH);
                 Destroy(collision.gameObject);
+=======
+               AddBones(_NUMBER_OF_BONES_IN_BUNCH);
+               Destroy(collision.gameObject);
+>>>>>>> ed38e47f762458a193068890edb3f3e5f7b93990
             }
         }
         else
