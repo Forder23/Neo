@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class EnemyTouchScript : MonoBehaviour
 {
-    Vector3 startPoint; //place where player collides
-    Vector3 endPoint; //place where player respawns
+    Vector3 StartPoint; //place where player collides
+    Vector3 EndPoint; //place where player respawns
     private GameObject Neo; //player
-    public bool isTouched;
+    public bool IsTouched;
 
-    LerpHelper_Script lerp = new LerpHelper_Script();
+    LerpHelper_Script lerp;
     private void Start()
     {
         Neo = GameObject.FindGameObjectWithTag("Player");
-        endPoint = Neo.GetComponent<MovementScript>().RespawnPoint;
+        EndPoint = Neo.GetComponent<MovementScript>().RespawnPoint;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {        
-        if (collision.tag == "Dinosaur_Enemy")
+        if (collision.tag == "Dinosaur_Enemy" || collision.tag == "Dinosaur_Enemy_02")
         {
-            isTouched = true;
-            startPoint = transform.position;
+            IsTouched = true;
+            StartPoint = transform.position;
         }
         if (collision.tag == "water")
         {

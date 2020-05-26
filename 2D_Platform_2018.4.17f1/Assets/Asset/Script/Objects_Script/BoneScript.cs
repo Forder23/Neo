@@ -14,6 +14,9 @@ public class BoneScript : MonoBehaviour
 
     float boneDamage = 0.2f;
 
+    [SerializeField]
+    private GameObject CoinSprite;
+
     private void Start()
     {
         if(Direction == LookingDirection.Right)
@@ -29,6 +32,15 @@ public class BoneScript : MonoBehaviour
             damage.MakeDamage(boneDamage);
             bloodObjectToDestroy = Instantiate(bloodObject, transform.position, bloodObject.transform.rotation);
             Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Crackable_Door"))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Dinosaur_Enemy_02"))
+        {
+            Destroy(collision.gameObject);
+            Instantiate(CoinSprite,collision.transform.position,collision.transform.rotation);
         }
         Destroy(bloodObjectToDestroy, 0.3f);
     }

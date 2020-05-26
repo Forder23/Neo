@@ -21,12 +21,16 @@ public class MovingDoorScript : MonoBehaviour
         {
             MovingDoor.transform.position += new Vector3(0, MovementSpeed * Time.deltaTime, 0);
             Debug.Log(Mathf.Abs(MovingDoor.transform.position.y - FinalPosition.y));
+            if (Mathf.Abs(MovingDoor.transform.position.y - FinalPosition.y) <= 0.15f)
+            {
+                IsTriggered = false;
+                if (IsTriggered == false)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
         }
-        if (Mathf.Abs(MovingDoor.transform.position.y - FinalPosition.y) <= 0.35f)
-        {
-            IsTriggered = false;
-            //MovingDoor.GetComponent<Rigidbody2D>().isKinematic = true;
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

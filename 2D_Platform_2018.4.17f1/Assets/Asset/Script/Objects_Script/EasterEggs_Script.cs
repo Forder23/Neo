@@ -23,4 +23,6 @@ public class EasterEggs_Script : MonoBehaviour
             //Popup animation how many keys in collected of how many exist in game
         }
     }
+
+    public int GetEasterEggs() { return CollectedEggs; }
 }

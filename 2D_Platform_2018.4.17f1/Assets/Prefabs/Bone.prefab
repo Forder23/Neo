@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5242697571257795289}
   - component: {fileID: 5242697571257795290}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,6 +121,8 @@ MonoBehaviour:
   bloodObject: {fileID: 7652190501676264494, guid: 16dc01a13fdff8043a2adfea53c5b7eb,
     type: 3}
   Direction: 0
+  CoinSprite: {fileID: 3969128546249509591, guid: 3ed0273e644804e49a6fc6b2778797a4,
+    type: 3}
 --- !u!60 &5242697571257795289
 PolygonCollider2D:
   m_ObjectHideFlags: 0

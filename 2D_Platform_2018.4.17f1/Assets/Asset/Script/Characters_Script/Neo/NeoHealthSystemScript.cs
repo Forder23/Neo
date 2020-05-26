@@ -13,7 +13,10 @@ public class NeoHealthSystemScript : MonoBehaviour
     [SerializeField]
     private Image[] HeartObject;
 
-    int NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES-1;
+    int NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES;
+
+    [SerializeField]
+    private GameObject Heart;
 
     private bool LostLife; //variable used for disappearing platform in second lvl
     private void IsLost(bool Lost) { LostLife = Lost; }
@@ -22,6 +25,9 @@ public class NeoHealthSystemScript : MonoBehaviour
         IsLost(_LostLife);
     }
     public bool GetIsLostLife() { return LostLife; }
+
+    public int GetNumberOfCurrentLifes() { return NumberOfCurrentLife; }
+    public void SetNnumberOfCurrentLifes(int Lifes) { NumberOfCurrentLife = Lifes; }
 
     void Start()
     {
@@ -32,6 +38,7 @@ public class NeoHealthSystemScript : MonoBehaviour
         //    HeartObject[i].transform.position = new Vector3(HeartsBoxParent.transform.position.x + OffsetX * i, HeartsBoxParent.transform.position.y);
         //    Instantiate(HeartObject[i], HeartsBoxParent, true);
         //}
+        Debug.Log($"LIFES: {NumberOfCurrentLife}");
     }
 
     //function for taking one of the hearts
@@ -41,16 +48,35 @@ public class NeoHealthSystemScript : MonoBehaviour
     }
     private void TakeOneLife()
     {
-        if (NumberOfCurrentLife > 0)
+        if (NumberOfCurrentLife > 1)
         {
+            --NumberOfCurrentLife;
             HeartObject[NumberOfCurrentLife].enabled = false;
-            NumberOfCurrentLife--;
             SetIsLifeLost(true);
         }
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }   
+        }
+
+    }
+
+    private void AddOneLife()
+    {
+        if (NumberOfCurrentLife == 5)
+        {
+            Heart.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else if (NumberOfCurrentLife < TOTAL_NUMBER_OF_LIFES)
+        {           
+            NumberOfCurrentLife++;
+            HeartObject[NumberOfCurrentLife-1].enabled = true;
+        }
+    }
+
+    public void AddLife()
+    {
+        AddOneLife();
     }
 }
 

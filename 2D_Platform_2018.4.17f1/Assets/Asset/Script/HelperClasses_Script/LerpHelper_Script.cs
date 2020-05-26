@@ -20,7 +20,7 @@ public class LerpHelper_Script : MonoBehaviour
 
     private void Update()
     {
-        if (enemy.isTouched == true)
+        if (enemy.IsTouched == true)
         {
             moving = true;
             Neo.GetComponent<Renderer>().enabled = false;
@@ -36,7 +36,7 @@ public class LerpHelper_Script : MonoBehaviour
 
         if (distBetween <= 0.3)
         {
-            enemy.isTouched = false;
+            enemy.IsTouched = false;
             moving = false;
             Neo.GetComponent<Renderer>().enabled = true;
             Neo.GetComponent<MovementScript>().SetHurt(false);

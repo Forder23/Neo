@@ -19,6 +19,12 @@ TagManager:
   - Pendulum
   - Grass_ThinSprite
   - Rock_Asset
+  - Crackable_Door
+  - Dinosaur_Enemy_02
+  - Life
+  - Spike_Trigger
+  - Worm
+  - Manager
   layers:
   - Default
   - TransparentFX
@@ -29,7 +35,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Glow
   - 
   - 
   - 

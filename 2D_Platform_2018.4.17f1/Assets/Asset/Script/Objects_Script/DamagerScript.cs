@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamagerScript : MonoBehaviour
 {
+    private int Kills;
     [SerializeField]
     float health=.99f;
 
@@ -31,6 +32,5 @@ public class DamagerScript : MonoBehaviour
             hp.GetComponent<HealthScript>().SetCurrentHealth(health);
 
         }
-
     }
 }

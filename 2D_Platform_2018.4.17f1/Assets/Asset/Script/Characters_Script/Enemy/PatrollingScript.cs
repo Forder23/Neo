@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class PatrollingScript : MonoBehaviour
 {
-    float enemySpeed;
-    float distance;
-    public Transform checker;    
-    bool movingRight;
+    [SerializeField]
+    [Range(1.5f,3.5f)]
+    private float EnemySpeed;
+
+    [SerializeField]
+    [Range(1.5f, 3.5f)]
+    private float Distance;
+
+    [SerializeField]
+    private Transform Checker;    
+    
+    private bool MovingRight;
     private void Start()
     {
-        enemySpeed = 4.2f; 
-        distance = 2.4f;
+        EnemySpeed = 4.2f; 
+        Distance = 2.4f;
     }
     void Update()
     {
-        transform.Translate(-Vector2.right * enemySpeed *Time.deltaTime);
-        RaycastHit2D groundCheck = Physics2D.Raycast(checker.position, Vector2.down, distance);
+        transform.Translate(-Vector2.right * EnemySpeed *Time.deltaTime);
+        RaycastHit2D groundCheck = Physics2D.Raycast(Checker.position, Vector2.down, Distance);
 
         if (groundCheck.collider == false)
         {
-            if (movingRight)
+            if (MovingRight)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
+                MovingRight = false;
             }
             else
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
+                MovingRight = true;
             }
         }
     }

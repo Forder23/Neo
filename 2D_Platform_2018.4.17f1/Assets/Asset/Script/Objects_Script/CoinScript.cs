@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
-    private static int score;
+    private static int Score;
     void Start()
     {
-        score = 0;
+        Score = 0;
     }
     private void Update()
     {
@@ -14,10 +14,11 @@ public class CoinScript : MonoBehaviour
         if (other.tag == "Player")
         {           
             Destroy(gameObject);
-            score++;           
+            Score++;           
         }
         //Debug.Log("Score: " + score);       
     }
 
-    public int GetScore() { return score;  }
+    public static int GetScore() { return Score;  }
+    public static void SetScore(int NewScore) { Score = NewScore; }
 }

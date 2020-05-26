@@ -11,6 +11,8 @@ public enum LookingDirection
 }
 public class MovementScript : MonoBehaviour
 {
+    public float TimeSpentInGame;
+
     [SerializeField]
     private GameObject Player;
 
@@ -43,6 +45,10 @@ public class MovementScript : MonoBehaviour
     }
 
     public bool GetHurt() { return IsHurt; }
+
+    public bool IsOnSpikeTrigger = false;
+    public bool GetIsOnSpikeTrigger() { return IsOnSpikeTrigger; }
+
     private void Start()
     {
 
@@ -57,7 +63,6 @@ public class MovementScript : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth = PlayerHealthBox.GetComponent<NeoHealthSystemScript>();
-
     }
     private void OnDestroy()
     {
@@ -102,6 +107,8 @@ public class MovementScript : MonoBehaviour
 
     private void Update()
     {
+        TimeSpentInGame = (float) Math.Round(Time.time,2);
+
         OnAxisChanged?.Invoke(Input.GetAxis("Horizontal"));
 
         if (Input.GetButtonDown("Jump"))
@@ -125,20 +132,30 @@ public class MovementScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Dinosaur_Enemy"))
+        if (collision != null)
         {
-            PlayerHealth.TakeLife(); //take one life            
-            //save position before hurt and start from that position or from the last checkpoint           
-        }
-        if (collision.gameObject.CompareTag("Spike"))
-        {
-            PlayerHealth.TakeLife();
-            IsHurt = true;//animation for hurt player           
-            RespawnPoint = new Vector3(Player.transform.position.x - 2f, Player.transform.position.y, Player.transform.position.z); ;
-        }
-        if (collision.gameObject.CompareTag("Next_Level"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (collision.gameObject.CompareTag("Dinosaur_Enemy"))
+            {
+                PlayerHealth.TakeLife(); //take one life            
+                //save position before hurt and start from that position or from the last checkpoint           
+            }
+            if (collision.gameObject.CompareTag("Spike"))
+            {
+                PlayerHealth.TakeLife();
+                IsHurt = true;//animation for hurt player
+                RespawnPoint = new Vector3(Player.transform.position.x - 2f, Player.transform.position.y, Player.transform.position.z);
+            }
+            if (collision.gameObject.CompareTag("Next_Level"))
+            {
+                Debug.Log("Level Passed!");
+                //Make transitionable results              
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            if (collision.gameObject.CompareTag("Life"))
+            {
+                PlayerHealth.AddLife();
+                Destroy(collision.gameObject);
+            }
         }
     }
 
@@ -158,17 +175,28 @@ public class MovementScript : MonoBehaviour
                 //Debug.Log("You're on the platform");
                 Player.transform.parent = collision.transform;
             }
+            if (collision.gameObject.CompareTag("Rock_Asset"))
+            {
+                StartCoroutine(CooldownForDisappearInstantiate(collision.gameObject));
+            }
+            if (collision.gameObject.CompareTag("Pendulum"))
+            {
+                PlayerHealth.TakeLife();
+            }
+            if (collision.gameObject.CompareTag("Spike_Trigger"))
+            {
+                IsOnSpikeTrigger = true;
+            }
+            if (collision.gameObject.CompareTag("Worm"))
+            {
+                Debug.Log("Auch");
+                PlayerHealth.TakeLife();
+            }
         }
         else
         {
             Debug.Log("Null reference");
         }
-
-        if(collision.gameObject.CompareTag("Rock_Asset"))
-        {
-            StartCoroutine(CooldownForDisappearInstantiate(collision.gameObject));
-        }
-
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -178,6 +206,10 @@ public class MovementScript : MonoBehaviour
             {
                 Player.transform.parent = null;
                 //Debug.Log("You left the platform");
+            }
+            if (collision.gameObject.CompareTag("Spike_Trigger"))
+            {
+                IsOnSpikeTrigger = false;
             }
         }
     }
