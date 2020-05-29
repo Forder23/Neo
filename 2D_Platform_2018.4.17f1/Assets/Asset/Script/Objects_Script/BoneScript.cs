@@ -17,12 +17,16 @@ public class BoneScript : MonoBehaviour
     [SerializeField]
     private GameObject CoinSprite;
 
+    private AudioSource HitAudio;
+
     private void Start()
     {
         if(Direction == LookingDirection.Right)
             rb.velocity = transform.right * Speed;
         else
             rb.velocity = -transform.right * Speed;
+
+        HitAudio = this.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,6 +34,7 @@ public class BoneScript : MonoBehaviour
         if (collision.tag=="Dinosaur_Enemy")
         {
             damage.MakeDamage(boneDamage);
+            HitAudio.Play();
             bloodObjectToDestroy = Instantiate(bloodObject, transform.position, bloodObject.transform.rotation);
             Destroy(gameObject);
         }

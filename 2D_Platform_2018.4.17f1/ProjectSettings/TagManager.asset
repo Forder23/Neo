@@ -25,6 +25,7 @@ TagManager:
   - Spike_Trigger
   - Worm
   - Manager
+  - HeartBox
   layers:
   - Default
   - TransparentFX

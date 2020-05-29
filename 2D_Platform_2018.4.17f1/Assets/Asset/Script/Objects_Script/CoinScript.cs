@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 public class CoinScript : MonoBehaviour
 {
-    private static int Score;
-    void Start()
+    private static int Score=0;
+    private AudioSource CoinCollectSource;    
+    private void Awake()
     {
-        Score = 0;
-    }
-    private void Update()
-    {
+        CoinCollectSource = this.GetComponent<AudioSource>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {           
-            Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            CoinCollectSource.Play();
+            Destroy(this);
+            gameObject.GetComponent<Renderer>().enabled = false;
             Score++;           
         }
         //Debug.Log("Score: " + score);       

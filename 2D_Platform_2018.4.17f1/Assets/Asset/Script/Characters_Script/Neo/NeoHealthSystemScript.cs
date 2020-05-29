@@ -11,9 +11,9 @@ public class NeoHealthSystemScript : MonoBehaviour
     [SerializeField]
     private Transform HeartsBoxParent;
     [SerializeField]
-    private Image[] HeartObject;
+    private Image[] HeartObject = new Image[NumberOfCurrentLife];
 
-    int NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES;
+    private static int NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES;
 
     [SerializeField]
     private GameObject Heart;
@@ -26,8 +26,9 @@ public class NeoHealthSystemScript : MonoBehaviour
     }
     public bool GetIsLostLife() { return LostLife; }
 
-    public int GetNumberOfCurrentLifes() { return NumberOfCurrentLife; }
-    public void SetNnumberOfCurrentLifes(int Lifes) { NumberOfCurrentLife = Lifes; }
+    public static int GetTotalLifes() { return TOTAL_NUMBER_OF_LIFES; }
+    public static int GetNumberOfCurrentLifes() { return NumberOfCurrentLife; }
+    public static void SetNumberOfCurrentLifes(int Lifes) { NumberOfCurrentLife = Lifes; }
 
     void Start()
     {
@@ -38,9 +39,21 @@ public class NeoHealthSystemScript : MonoBehaviour
         //    HeartObject[i].transform.position = new Vector3(HeartsBoxParent.transform.position.x + OffsetX * i, HeartsBoxParent.transform.position.y);
         //    Instantiate(HeartObject[i], HeartsBoxParent, true);
         //}
+        for (int i = 0; i < HeartObject.Length; i++)
+        {
+            HeartObject[i].enabled = false;
+        }
+        ShowHearts();
         Debug.Log($"LIFES: {NumberOfCurrentLife}");
     }
 
+    void ShowHearts()
+    {
+        for (int i = 0; i < NumberOfCurrentLife; i++)
+        {
+            HeartObject[i].enabled = true;
+        }
+    }
     //function for taking one of the hearts
     public void TakeLife()
     {
@@ -57,6 +70,7 @@ public class NeoHealthSystemScript : MonoBehaviour
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            NumberOfCurrentLife = TOTAL_NUMBER_OF_LIFES;
         }
 
     }

@@ -6,17 +6,20 @@ public class BoosterScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject Neo;
-
     private const float  _BOOSTER_DURATION = 1.5f;
+
+    private AudioSource BoosterSound;
     private void Start()
     {
         Neo = GameObject.FindGameObjectWithTag("Player");
+        BoosterSound = this.GetComponent<AudioSource>();
     }
     IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         MovementScript playerJump = Neo.GetComponent<MovementScript>();
         if (collision.tag == "Player")
         {
+            BoosterSound.Play();
             gameObject.GetComponent<Renderer>().enabled = false;
             Neo.GetComponent<MovementScript>().JumpStrength = 10f;
             //Debug.Log("Coroutine Started");

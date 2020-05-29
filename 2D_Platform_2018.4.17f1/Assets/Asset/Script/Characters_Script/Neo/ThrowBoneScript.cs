@@ -7,7 +7,7 @@ public class ThrowBoneScript : MonoBehaviour
 {
     private const int _NUMBER_OF_BONES_IN_BUNCH = 6;
 
-    private static int NumberOfBones;
+    private static int NumberOfBones=0;
 
     public Transform FirePoint;
     public GameObject BonePrefab;
@@ -16,10 +16,12 @@ public class ThrowBoneScript : MonoBehaviour
     private TMP_Text textBones;
     private MovementScript PlayerMovement;
 
+    public AudioSource GetBonesAudio;
+
     void Start()
     {
         PlayerMovement = GetComponent<MovementScript>();
-        NumberOfBones = 0;
+        GetBonesAudio = PlayerMovement.NoBonesSource;
     }
 
     void Update()
@@ -53,6 +55,7 @@ public class ThrowBoneScript : MonoBehaviour
 
     }
     public int GetNumberOfBones() { return NumberOfBones; }
+    public void SetNumberOfBones(int NewBones) { NumberOfBones = NewBones; }
 
     void Shoot()
     {
@@ -69,6 +72,7 @@ public class ThrowBoneScript : MonoBehaviour
         if ((Input.GetButtonDown("Fire1")) && (NumberOfBones == 0))
         {
             StartCoroutine(CooldownForAlert());
+            GetBonesAudio.Play();
         }
     }
     IEnumerator CooldownForAlert()

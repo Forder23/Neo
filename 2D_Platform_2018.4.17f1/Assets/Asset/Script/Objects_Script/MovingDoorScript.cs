@@ -15,6 +15,13 @@ public class MovingDoorScript : MonoBehaviour
     [Range(1,10)]
     private float MovementSpeed;
 
+    private AudioSource SlideMovementAudio;
+
+    private void Awake()
+    {
+        SlideMovementAudio = MovingDoor.GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (IsTriggered == true)
@@ -29,8 +36,7 @@ public class MovingDoorScript : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-        }
-        
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,6 +46,7 @@ public class MovingDoorScript : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 IsTriggered = true;
+                SlideMovementAudio.Play();
                 Debug.Log($"Doors are: {IsTriggered}");
             }
         }

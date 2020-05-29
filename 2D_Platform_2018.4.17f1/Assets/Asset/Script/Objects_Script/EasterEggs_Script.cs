@@ -24,5 +24,6 @@ public class EasterEggs_Script : MonoBehaviour
         }
     }
 
-    public int GetEasterEggs() { return CollectedEggs; }
+    public static int GetEasterEggs() { return CollectedEggs; }
+    public static void SetEasterEggs(int NewEasterEggs) { CollectedEggs = NewEasterEggs; }
 }

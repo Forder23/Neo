@@ -11,7 +11,7 @@ public enum LookingDirection
 }
 public class MovementScript : MonoBehaviour
 {
-    public float TimeSpentInGame;
+    public static float TimeSpentInGame;
 
     [SerializeField]
     private GameObject Player;
@@ -31,6 +31,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     private Transform PlayerHealthBox;
     private NeoHealthSystemScript PlayerHealth;
+    public NeoHealthSystemScript GetPlayerHealth() { return PlayerHealth; }
 
     [SerializeField]
     private bool IsHurt;
@@ -49,6 +50,41 @@ public class MovementScript : MonoBehaviour
     public bool IsOnSpikeTrigger = false;
     public bool GetIsOnSpikeTrigger() { return IsOnSpikeTrigger; }
 
+    [SerializeField]
+    private GameObject Manager;
+    private SaveLoadSystemScript LevelManager;
+
+    public AudioSource NoBonesSource;
+    //[SerializeField]
+    //private AudioSource MovementAudio;
+
+    [SerializeField]
+    private Sound[] Sounds;
+
+    private void Awake()
+    {
+        foreach(var item in Sounds)
+        {
+            item.SetSource(gameObject.AddComponent<AudioSource>());
+            item.GetAudioSource().clip = item.GetClip();
+            item.GetAudioSource().volume = item.GetVolume();
+            item.SetPlayOnAwake(false);
+            item.SetLoop(true);
+        }
+    }
+
+    public void Play(string soundName)
+    {
+        Sound sound = Array.Find(Sounds, s => s.GetName() == soundName);
+        if (sound != null)
+        {
+            sound.GetAudioSource().Play();
+        }
+        else
+        {
+            Debug.Log($"Source couldn't be located");
+        }
+    }
     private void Start()
     {
 
@@ -63,6 +99,10 @@ public class MovementScript : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth = PlayerHealthBox.GetComponent<NeoHealthSystemScript>();
+
+        LevelManager = Manager.GetComponent<SaveLoadSystemScript>();
+        NoBonesSource = this.GetComponent<AudioSource>();
+        //MovementAudio = this.GetComponent<AudioSource>();
     }
     private void OnDestroy()
     {
@@ -81,21 +121,25 @@ public class MovementScript : MonoBehaviour
     {
         if (HorizontalAxis > 0)
         {
+            //Play("Run");
             MovementSpeed = 5f;
             LookingDirection = LookingDirection.Right;
             if (LookingDirection == LookingDirection.Right)
             {
                 transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
+            //MovementAudio.Play();
         }
         if (HorizontalAxis < 0)
         {
+            //Play("Run");
             MovementSpeed = 5f;
             LookingDirection = LookingDirection.Left;
             if (LookingDirection == LookingDirection.Left)
             {
                 transform.localRotation = new Quaternion(0, -180, 0, 0);
             }
+            //MovementAudio.Play();
         }
         if (HorizontalAxis == 0)
             MovementSpeed = 0f;
@@ -148,8 +192,11 @@ public class MovementScript : MonoBehaviour
             if (collision.gameObject.CompareTag("Next_Level"))
             {
                 Debug.Log("Level Passed!");
-                //Make transitionable results              
+                //Make transitionable results
+                LevelManager.SaveData();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                LevelManager.LoadData();
+                
             }
             if (collision.gameObject.CompareTag("Life"))
             {
@@ -164,6 +211,7 @@ public class MovementScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike"))
         {
             StartCoroutine(CooldownForHurt());
+            Play("Hurt");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -227,4 +275,7 @@ public class MovementScript : MonoBehaviour
         yield return new WaitForSeconds(2.3f);
         Rock.SetActive(true);
     }
+
+    public float GetTime() { return TimeSpentInGame; }
+    public void SetTime(float NewTime) { TimeSpentInGame += NewTime; }
 }

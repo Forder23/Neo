@@ -16,7 +16,7 @@ public class FlyingSpikesScript : MonoBehaviour
     private Transform Spikes_Container;
     [SerializeField]
     private int NumberOfAccumulaterSpikes;
-    private List<GameObject> AccumulatedSpikes; 
+    private List<GameObject>AccumulatedSpikes; 
 
     private void Start()
     {
@@ -37,10 +37,10 @@ public class FlyingSpikesScript : MonoBehaviour
                 Instantiate(FlyingSpike, Spikes_Container.position, FlyingSpike.transform.rotation);
                 NumberOfAccumulaterSpikes++;
                 AccumulatedSpikes.Add(FlyingSpike);
-                foreach (var item in AccumulatedSpikes)
-                {
-                    Destroy(item, 0.5f);
-                }
+                //foreach (var item in AccumulatedSpikes)
+                //{
+                //    Destroy(item, 0.5f);
+                //}
             }
             PlayerMovement.IsOnSpikeTrigger = false;
         }

@@ -9,6 +9,13 @@ public class DisappearingGrass : MonoBehaviour
     [SerializeField]
     private GameObject Spike_02;
 
+    private AudioSource SnapAudio;
+
+    private void Awake()
+    {
+        SnapAudio = this.GetComponent<AudioSource>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Entered");
@@ -21,7 +28,8 @@ public class DisappearingGrass : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                yield return new WaitForSeconds(1.5f);
+                SnapAudio.Play();
+                yield return new WaitForSeconds(4f);
                 Spike_01.SetActive(false);
                 Spike_02.SetActive(false);
                 this.gameObject.GetComponent<Renderer>().enabled = false;
